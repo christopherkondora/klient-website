@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#598392"/>
+      <stop offset="100%" style="stop-color:#124559"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="24" fill="url(#bg)"/>
+  <circle cx="100" cy="72" r="32" fill="rgba(174,195,176,0.2)"/>
+  <circle cx="100" cy="72" r="24" fill="rgba(174,195,176,0.15)"/>
+  <path d="M70 150c0-22 13.4-40 30-40s30 18 30 40" fill="rgba(174,195,176,0.15)"/>
+  <text x="100" y="80" text-anchor="middle" fill="#EFF6E0" font-family="Inter,system-ui,sans-serif" font-size="28" font-weight="700">NA</text>
+</svg>

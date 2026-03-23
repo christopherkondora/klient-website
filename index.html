@@ -1,0 +1,827 @@
+﻿<!DOCTYPE html>
+<html lang="hu" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Klient — Ügyfél- és projektkezelő szoftver ügynökségeknek és szabadúszóknak</title>
+  <meta name="description" content="A Klient magyar fejlesztésű asztali alkalmazás, amely egy helyre hozza az ügyfeleidet, projektjeidet, pénzügyeidet és naptáradat. Próbáld ki ingyen 14 napig Windows-on és macOS-en." />
+  <meta name="keywords" content="ügyfélkezelő szoftver, projektmenedzsment, CRM magyar, ügynökségi szoftver, szabadúszó eszköz, számlázás Billingo, asztali alkalmazás, Windows, macOS" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://klient.work/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://klient.work/" />
+  <meta property="og:title" content="Klient — Ügyfél- és projektkezelő asztali alkalmazás" />
+  <meta property="og:description" content="Egyetlen hely az ügyfeleidnek, projektjeidnek és pénzügyeidnek. Magyar fejlesztésű desktop app ügynökségeknek." />
+  <meta property="og:image" content="https://klient.work/dashboard.png" />
+  <meta property="og:locale" content="hu_HU" />
+  <meta property="og:site_name" content="Klient" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Klient — Ügyfél- és projektkezelő asztali alkalmazás" />
+  <meta name="twitter:description" content="Egyetlen hely az ügyfeleidnek, projektjeidnek és pénzügyeidnek." />
+  <meta name="twitter:image" content="https://klient.work/dashboard.png" />
+
+  <link rel="icon" type="image/png" href="/icon.png" />
+  <link rel="apple-touch-icon" href="/icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/styles.css" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Klient",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Windows 10+, macOS",
+    "offers": [
+      { "@type": "Offer", "price": "3990", "priceCurrency": "HUF", "name": "Havi csomag" },
+      { "@type": "Offer", "price": "39900", "priceCurrency": "HUF", "name": "Éves csomag" },
+      { "@type": "Offer", "price": "119900", "priceCurrency": "HUF", "name": "Örökös licensz" }
+    ],
+    "description": "Magyar fejlesztésű asztali ügyfél- és projektkezelő alkalmazás ügynökségeknek és szabadúszóknak.",
+    "url": "https://klient.work",
+    "image": "https://klient.work/dashboard.png"
+  }
+  </script>
+</head>
+<body class="bg-ink text-cream font-sans antialiased">
+
+  <!-- ═══════════════ NAVIGATION ═══════════════ -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3 group">
+        <img src="/icon.png" alt="Klient" class="w-9 h-9 rounded-lg transition-transform group-hover:scale-110" />
+        <span class="text-xl font-bold tracking-tight">Klient</span>
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#problems" class="nav-link text-sm text-steel-light hover:text-cream transition-colors">Kihívások</a>
+        <a href="#features" class="nav-link text-sm text-steel-light hover:text-cream transition-colors">Funkciók</a>
+        <a href="#audience" class="nav-link text-sm text-steel-light hover:text-cream transition-colors">Kinek való</a>
+        <a href="#pricing" class="nav-link text-sm text-steel-light hover:text-cream transition-colors">Árazás</a>
+        <a href="#downloads" class="nav-link text-sm text-steel-light hover:text-cream transition-colors">Letöltés</a>
+        <a href="docs.html" class="nav-link text-sm text-steel-light hover:text-cream transition-colors">Dokumentáció</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="#downloads" class="btn-primary text-sm font-semibold px-5 py-2.5 rounded-xl text-cream inline-flex items-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          Letöltés
+        </a>
+        <button id="mobile-menu-btn" class="md:hidden p-2 text-steel-light hover:text-cream" aria-label="Menü">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden glass-strong mx-4 mb-4 rounded-2xl overflow-hidden">
+      <div class="flex flex-col p-4 gap-3">
+        <a href="#problems" class="text-sm text-steel-light hover:text-cream py-2 px-3 rounded-lg hover:bg-teal/10 transition">Kihívások</a>
+        <a href="#features" class="text-sm text-steel-light hover:text-cream py-2 px-3 rounded-lg hover:bg-teal/10 transition">Funkciók</a>
+        <a href="#audience" class="text-sm text-steel-light hover:text-cream py-2 px-3 rounded-lg hover:bg-teal/10 transition">Kinek való</a>
+        <a href="#pricing" class="text-sm text-steel-light hover:text-cream py-2 px-3 rounded-lg hover:bg-teal/10 transition">Árazás</a>
+        <a href="#downloads" class="text-sm text-steel-light hover:text-cream py-2 px-3 rounded-lg hover:bg-teal/10 transition">Letöltés</a>
+        <a href="docs.html" class="text-sm text-steel-light hover:text-cream py-2 px-3 rounded-lg hover:bg-teal/10 transition">Dokumentáció</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══════════════ HERO ═══════════════ -->
+  <section class="hero-gradient relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden">
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-teal/5 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-steel/5 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center relative z-10">
+      <div>
+        <div class="animate-fade-up opacity-0 inline-flex items-center gap-2 glass rounded-full px-4 py-2 mb-8">
+          <span class="w-2 h-2 bg-ash rounded-full animate-pulse"></span>
+          <span id="hero-version" class="text-xs font-medium text-ash">Elérhető Windows és macOS rendszerre</span>
+        </div>
+
+        <h1 class="animate-fade-up opacity-0 animate-delay-100 text-4xl sm:text-5xl lg:text-[3.5rem] font-extrabold leading-[1.1] tracking-tight">
+          Az ügynökséged irányítása.<br/>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-steel-light to-ash">Egyetlen alkalmazásban.</span>
+        </h1>
+
+        <p class="animate-fade-up opacity-0 animate-delay-200 mt-6 text-lg text-steel-light leading-relaxed max-w-lg">
+          A Klient leváltja a szétszórt táblázatokat, cetliket és rendszereket. Kezeld az ügyfeleidet, kövess projekteket, tartsd kézben a pénzügyeidet — mindezt egyetlen magyar fejlesztésű asztali alkalmazásból.
+        </p>
+
+        <div class="animate-fade-up opacity-0 animate-delay-300 mt-10 flex flex-wrap gap-4">
+          <a href="#downloads" class="btn-primary inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-cream font-semibold text-base">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+            Ingyenes letöltés
+          </a>
+          <a href="#problems" class="btn-secondary inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-cream/80 font-medium text-base">
+            Tudj meg többet
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </a>
+        </div>
+
+        <div class="animate-fade-up opacity-0 animate-delay-400 mt-10 flex items-center gap-6 text-sm text-steel">
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-ash" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            14 nap ingyen
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-ash" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            Bankkártya nélkül
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-ash" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            Windows + macOS
+          </div>
+        </div>
+      </div>
+
+      <div class="float-animation">
+        <div class="mockup-window glow-teal">
+          <div class="mockup-titlebar">
+            <div class="mockup-dot bg-red-500/80"></div>
+            <div class="mockup-dot bg-yellow-500/80"></div>
+            <div class="mockup-dot bg-green-500/80"></div>
+            <span class="ml-2 text-xs text-steel/60 font-medium">Klient — Dashboard</span>
+          </div>
+          <img src="/dashboard.png" alt="A Klient alkalmazás műszerfala projektekkel, ügyfelekkel és pénzügyi áttekintéssel" class="w-full h-auto block" loading="eager" />
+        </div>
+      </div>
+    </div>
+
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+      <svg class="w-5 h-5 text-steel/40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+    </div>
+  </section>
+
+  <!-- ═══════════════ STATS BAR ═══════════════ -->
+  <section class="py-16 border-y border-teal/10">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center reveal anim-group">
+        <div>
+          <div class="text-3xl sm:text-4xl font-bold text-cream anim-counter" style="--d: 0s">6+</div>
+          <div class="text-sm text-steel mt-1 anim-text" style="--d: 0.1s">Beépített modul</div>
+        </div>
+        <div>
+          <div class="text-3xl sm:text-4xl font-bold text-cream anim-counter" style="--d: 0.15s">2</div>
+          <div class="text-sm text-steel mt-1 anim-text" style="--d: 0.25s">Platform (Win + Mac)</div>
+        </div>
+        <div>
+          <div class="text-3xl sm:text-4xl font-bold text-cream anim-counter" style="--d: 0.3s">AI</div>
+          <div class="text-sm text-steel mt-1 anim-text" style="--d: 0.4s">Integrált beszédfelismerés</div>
+        </div>
+        <div>
+          <div class="text-3xl sm:text-4xl font-bold text-cream anim-counter" style="--d: 0.45s">∞</div>
+          <div class="text-sm text-steel mt-1 anim-text" style="--d: 0.55s">Ügyfél és projekt</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ PAIN POINTS (Productive.io style) ═══════════════ -->
+  <section id="problems" class="py-24 lg:py-32 relative">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="max-w-2xl mb-16 reveal anim-group">
+        <span class="text-xs font-semibold uppercase tracking-widest text-teal-light anim-slide-l" style="--d: 0s">Ismerős a helyzet?</span>
+        <h2 class="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight anim-heading" style="--d: 0.12s">
+          Szembesülsz ezekkel<br/>a <span class="text-transparent bg-clip-text bg-gradient-to-r from-steel-light to-ash">kihívásokkal?</span>
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Problem 01 -->
+        <div class="group reveal pain-card" style="--card-delay: 0s">
+          <div class="pain-box glass rounded-2xl p-6 mb-6 h-48 flex items-center justify-center overflow-hidden relative">
+            <!-- Mini illustration: scattered tools -->
+            <div class="flex items-center gap-3 pain-pop">
+              <div class="w-12 h-12 rounded-xl bg-teal/20 flex items-center justify-center shadow-lg -rotate-6">
+                <svg class="w-6 h-6 text-steel-light" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>
+              </div>
+              <div class="w-10 h-10 rounded-lg bg-ink-lighter flex items-center justify-center text-steel text-xs font-bold border border-teal/10">XLS</div>
+              <div class="w-8 h-8 rounded-full bg-teal/10 flex items-center justify-center text-lg text-steel-light">+</div>
+              <div class="w-12 h-12 rounded-xl bg-teal/20 flex items-center justify-center shadow-lg rotate-3">
+                <svg class="w-6 h-6 text-steel-light" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              </div>
+              <div class="w-10 h-10 rounded-lg bg-ink-lighter flex items-center justify-center shadow-lg rotate-6 border border-teal/10">
+                <svg class="w-5 h-5 text-steel-light" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+              </div>
+            </div>
+          </div>
+          <div class="pain-num text-5xl font-extrabold text-teal/30 mb-3">01</div>
+          <p class="pain-text text-steel-light leading-relaxed">
+            Az ügyfelek adatai egy táblázatban, a számlák a Billingo-ban, a projektek egy másik appban, a jegyzetek post-it cetliken. <strong class="text-cream">Semmi sincs egy helyen</strong> — állandóan keresgélsz.
+          </p>
+        </div>
+
+        <!-- Problem 02 -->
+        <div class="group reveal pain-card" style="--card-delay: 0.4s">
+          <div class="pain-box glass rounded-2xl p-6 mb-6 h-48 flex items-center justify-center overflow-hidden">
+            <!-- Mini illustration: tasks with warning -->
+            <div class="space-y-3 w-full max-w-[200px] pain-pop">
+              <div class="flex items-center justify-between glass rounded-xl px-4 py-2.5">
+                <div class="flex items-center gap-2">
+                  <div class="w-5 h-5 rounded bg-teal/20 flex items-center justify-center"><svg class="w-3 h-3 text-ash" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg></div>
+                  <span class="text-xs text-cream font-medium">Ügyféladatok</span>
+                </div>
+                <div class="w-5 h-5 rounded-full bg-orange-500/20 flex items-center justify-center"><span class="text-orange-400 text-[10px]">?</span></div>
+              </div>
+              <div class="flex items-center justify-between glass rounded-xl px-4 py-2.5">
+                <div class="flex items-center gap-2">
+                  <div class="w-5 h-5 rounded bg-teal/20 flex items-center justify-center"><svg class="w-3 h-3 text-ash" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/></svg></div>
+                  <span class="text-xs text-cream font-medium">Ajánlat</span>
+                </div>
+                <div class="w-5 h-5 rounded-full bg-red-500/20 flex items-center justify-center"><span class="text-red-400 text-[10px]">!</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="pain-num text-5xl font-extrabold text-teal/30 mb-3">02</div>
+          <p class="pain-text text-steel-light leading-relaxed">
+            <strong class="text-cream">Órákat töltesz adminisztrációval</strong> ahelyett, hogy ügyfelekkel dolgoznál. Adatokat másolsz, e-maileket keresgélsz, státuszokat frissítesz — manuálisan, hibalehetőséggel.
+          </p>
+        </div>
+
+        <!-- Problem 03 -->
+        <div class="group reveal pain-card" style="--card-delay: 0.8s">
+          <div class="pain-box glass rounded-2xl p-6 mb-6 h-48 flex items-center justify-center overflow-hidden">
+            <!-- Mini illustration: lost deal card -->
+            <div class="w-full max-w-[220px] bg-ink-lighter/80 rounded-xl p-4 border border-teal/10 space-y-2.5 pain-pop">
+              <div class="text-sm font-semibold text-cream">Elvesztett projekt</div>
+              <div>
+                <div class="text-[10px] uppercase tracking-wider text-red-400 font-semibold">Ok</div>
+                <div class="text-xs text-steel-light">Másik eszközt választottak</div>
+              </div>
+              <div class="border-t border-teal/10 pt-2">
+                <div class="text-[10px] uppercase tracking-wider text-steel font-semibold">Megjegyzés</div>
+                <div class="text-xs text-steel-light">Nem követtük időben, az ügyfél továbbállt</div>
+              </div>
+            </div>
+          </div>
+          <div class="pain-num text-5xl font-extrabold text-teal/30 mb-3">03</div>
+          <p class="pain-text text-steel-light leading-relaxed">
+            <strong class="text-cream">Projektek csúsznak, ügyfelek lemaradnak</strong>, mert nincs egységes rendszer, ami átláthatóvá tenné, mi hol tart. A kaotikus nyilvántartás pénzt és bizalmat veszít.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SOLUTION BRIDGE ═══════════════ -->
+  <section class="py-20 relative">
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-teal/[0.04] to-transparent pointer-events-none"></div>
+    <div class="max-w-3xl mx-auto px-6 text-center relative z-10 reveal anim-group">
+      <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-teal/15 flex items-center justify-center anim-icon" style="--d: 0s">
+        <svg class="w-8 h-8 text-ash" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4 anim-heading" style="--d: 0.15s">A Klient pontosan erre ad megoldást</h2>
+      <p class="text-lg text-steel-light leading-relaxed max-w-2xl mx-auto anim-text" style="--d: 0.35s">
+        Egyetlen asztali alkalmazás, amely összefogja az ügyfélkezelést, projektmenedzsmentet, pénzügyeket és a mindennapi adminisztrációt. Nincs böngésző-tab-rengeteg, nincs internet-függőség — csak egy letisztult, gyors eszköz, amit imádni fogsz.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════════════ FEATURE OVERVIEW CARDS (OPPO Connect style) ═══════════════ -->
+  <section id="features" class="pb-16 relative">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 reveal anim-group">
+        <div class="feature-card glass rounded-2xl p-6 anim-scale" style="--d: 0s">
+          <div class="w-10 h-10 rounded-xl bg-teal/20 flex items-center justify-center mb-3">
+            <svg class="w-5 h-5 text-ash" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </div>
+          <h3 class="font-semibold mb-1">Ügyfélkezelés</h3>
+          <p class="text-xs text-steel leading-relaxed">Profilok, kapcsolattartók, jegyzetek — minden ügyfél egy kártyán.</p>
+        </div>
+        <div class="feature-card glass rounded-2xl p-6 anim-scale" style="--d: 0.1s">
+          <div class="w-10 h-10 rounded-xl bg-teal/20 flex items-center justify-center mb-3">
+            <svg class="w-5 h-5 text-ash" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
+          </div>
+          <h3 class="font-semibold mb-1">Projektmenedzsment</h3>
+          <p class="text-xs text-steel leading-relaxed">Feladatok, határidők, státusz — a felkéréstől a lezárásig.</p>
+        </div>
+        <div class="feature-card glass rounded-2xl p-6 anim-scale" style="--d: 0.2s">
+          <div class="w-10 h-10 rounded-xl bg-teal/20 flex items-center justify-center mb-3">
+            <svg class="w-5 h-5 text-ash" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h3 class="font-semibold mb-1">Pénzügyek</h3>
+          <p class="text-xs text-steel leading-relaxed">Bevételek, kiadások, Billingo számlázás, sparkline grafikonok.</p>
+        </div>
+        <div class="feature-card glass rounded-2xl p-6 anim-scale" style="--d: 0.3s">
+          <div class="w-10 h-10 rounded-xl bg-teal/20 flex items-center justify-center mb-3">
+            <svg class="w-5 h-5 text-ash" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          </div>
+          <h3 class="font-semibold mb-1">Naptár</h3>
+          <p class="text-xs text-steel leading-relaxed">Havi, heti, napi nézet. Deadline-ok és emlékeztetők.</p>
+        </div>
+        <div class="feature-card glass rounded-2xl p-6 anim-scale" style="--d: 0.4s">
+          <div class="w-10 h-10 rounded-xl bg-teal/20 flex items-center justify-center mb-3">
+            <svg class="w-5 h-5 text-ash" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
+          </div>
+          <h3 class="font-semibold mb-1">Hangfelvételek & AI</h3>
+          <p class="text-xs text-steel leading-relaxed">Meeting rögzítés, transzkripció, AI összegzés.</p>
+        </div>
+        <div class="feature-card glass rounded-2xl p-6 anim-scale" style="--d: 0.5s">
+          <div class="w-10 h-10 rounded-xl bg-teal/20 flex items-center justify-center mb-3">
+            <svg class="w-5 h-5 text-ash" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h3 class="font-semibold mb-1">Pomodoro Timer</h3>
+          <p class="text-xs text-steel leading-relaxed">Időkövetés projekthez kötve. Tudd, mire megy az időd.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ FEATURE DEEP-DIVES (Productive.io alternating style) ═══════════════ -->
+  <section class="py-24 lg:py-32 relative">
+    <div class="max-w-6xl mx-auto px-6 space-y-32">
+
+      <!-- Deep-dive 1: Ügyfélkezelés -->
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center reveal anim-group">
+        <div>
+          <span class="text-xs font-semibold uppercase tracking-widest text-teal-light anim-slide-l" style="--d: 0s">Ügyfélkezelés</span>
+          <h3 class="mt-3 text-2xl sm:text-3xl font-bold tracking-tight leading-snug anim-slide-l" style="--d: 0.1s">
+            Ne veszíts el egyetlen ügyfelet sem a káoszban
+          </h3>
+          <p class="mt-4 text-steel-light leading-relaxed anim-text" style="--d: 0.25s">
+            Minden ügyfélnek saját profiloldala van: cégnév, kapcsolattartók, e-mailek, telefonszámok, megjegyzések. A hozzá tartozó projektek és számlák automatikusan összerendelődnek. Keress rá bármelyik ügyfélre pillanatok alatt.
+          </p>
+          <ul class="mt-6 space-y-3">
+            <li class="flex items-start gap-3 text-sm text-steel-light anim-text" style="--d: 0.35s"><svg class="w-5 h-5 text-ash shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>Részletes ügyfélprofilok névvel, elérhetőségekkel, jegyzetekkel</li>
+            <li class="flex items-start gap-3 text-sm text-steel-light anim-text" style="--d: 0.45s"><svg class="w-5 h-5 text-ash shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>Azonnali keresés és szűrés státusz alapján</li>
+            <li class="flex items-start gap-3 text-sm text-steel-light anim-text" style="--d: 0.55s"><svg class="w-5 h-5 text-ash shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>Projektek és számlák automatikusan összekapcsolva</li>
+          </ul>
+        </div>
+        <div class="glass rounded-2xl p-1 glow-teal-sm mock-tilt">
+          <div class="bg-ink-lighter rounded-xl p-6 flex items-center justify-center min-h-[280px]">
+            <div class="w-full max-w-xs space-y-3 mock-stagger">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-full bg-teal/25 flex items-center justify-center text-sm font-bold text-ash">AB</div>
+                <div><div class="text-sm font-semibold">Alma & Barát Kft.</div><div class="text-xs text-steel">3 aktív projekt · 12 számla</div></div>
+              </div>
+              <div class="glass rounded-lg px-3 py-2 flex items-center justify-between text-xs"><span class="text-steel-light">Kapcsolattartó</span><span class="text-cream">Kiss Anna</span></div>
+              <div class="glass rounded-lg px-3 py-2 flex items-center justify-between text-xs"><span class="text-steel-light">Email</span><span class="text-cream">anna@almaes.hu</span></div>
+              <div class="glass rounded-lg px-3 py-2 flex items-center justify-between text-xs"><span class="text-steel-light">Státusz</span><span class="text-ash font-semibold">Aktív</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Deep-dive 2: Projektmenedzsment -->
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center reveal anim-group">
+        <div class="order-2 lg:order-1 glass rounded-2xl p-1 glow-teal-sm mock-tilt mock-tilt-right">
+          <div class="bg-ink-lighter rounded-xl p-6 flex items-center justify-center min-h-[280px]">
+            <div class="w-full max-w-xs space-y-3 mock-stagger">
+              <div class="text-xs font-semibold text-steel uppercase tracking-wider mb-2">Aktív projektek</div>
+              <div class="glass rounded-lg px-4 py-3 flex items-center justify-between">
+                <div class="flex items-center gap-3"><div class="w-2.5 h-2.5 rounded-full bg-ash"></div><span class="text-sm font-medium">Weboldal redesign</span></div>
+                <span class="text-[10px] font-semibold bg-ash/15 text-ash px-2 py-0.5 rounded-full">Folyamatban</span>
+              </div>
+              <div class="glass rounded-lg px-4 py-3 flex items-center justify-between">
+                <div class="flex items-center gap-3"><div class="w-2.5 h-2.5 rounded-full bg-orange-400"></div><span class="text-sm font-medium">Social kampány</span></div>
+                <span class="text-[10px] font-semibold bg-orange-400/15 text-orange-400 px-2 py-0.5 rounded-full">Ellenőrzés</span>
+              </div>
+              <div class="glass rounded-lg px-4 py-3 flex items-center justify-between">
+                <div class="flex items-center gap-3"><div class="w-2.5 h-2.5 rounded-full bg-teal-light"></div><span class="text-sm font-medium">Logó tervezés</span></div>
+                <span class="text-[10px] font-semibold bg-teal/20 text-teal-light px-2 py-0.5 rounded-full">Felkérés</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="order-1 lg:order-2">
+          <span class="text-xs font-semibold uppercase tracking-widest text-teal-light anim-slide-r" style="--d: 0s">Projektmenedzsment</span>
+          <h3 class="mt-3 text-2xl sm:text-3xl font-bold tracking-tight leading-snug anim-slide-r" style="--d: 0.1s">
+            Minden projekt — a felkéréstől a lezárásig nyomon követve
+          </h3>
+          <p class="mt-4 text-steel-light leading-relaxed anim-text" style="--d: 0.25s">
+            Hozz létre projekteket, rendeld hozzá ügyfeleidhez, és kövesd nyomon a státuszukat valós időben. Lásd egyetlen pillantással, melyik projekted hol tart, mi a következő lépés, és mi van csúszásban.
+          </p>
+          <ul class="mt-6 space-y-3">
+            <li class="flex items-start gap-3 text-sm text-steel-light anim-text" style="--d: 0.35s"><svg class="w-5 h-5 text-ash shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>Projektek létrehozása és ügyfélhez rendelése</li>
+            <li class="flex items-start gap-3 text-sm text-steel-light anim-text" style="--d: 0.45s"><svg class="w-5 h-5 text-ash shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>Státuszkövetés: Felkérés → Folyamatban → Lezárva</li>
+            <li class="flex items-start gap-3 text-sm text-steel-light anim-text" style="--d: 0.55s"><svg class="w-5 h-5 text-ash shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>Feladatlisták és határidők projektenként</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Deep-dive 3: Pénzügyek & Számlázás -->
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center reveal anim-group">
+        <div>
+          <span class="text-xs font-semibold uppercase tracking-widest text-teal-light anim-slide-l" style="--d: 0s">Pénzügyek & Számlázás</span>
+          <h3 class="mt-3 text-2xl sm:text-3xl font-bold tracking-tight leading-snug anim-slide-l" style="--d: 0.1s">
+            Bevételek, kiadások és számlák — átláthatóan, egy helyen
+          </h3>
+          <p class="mt-4 text-steel-light leading-relaxed anim-text" style="--d: 0.25s">
+            Kövesd a pénzforgalmad havi és éves szinten, állíts be bevételi célokat, és nézd sparkline grafikonokon, hogyan teljesítesz. A Billingo integrációval pedig a számlákat is az alkalmazásból kezeled — nem kell külön bejelentkezned.
+          </p>
+          <ul class="mt-6 space-y-3">
+            <li class="flex items-start gap-3 text-sm text-steel-light anim-text" style="--d: 0.35s"><svg class="w-5 h-5 text-ash shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>Billingo integráció — automatikus számlakiállítás</li>
+            <li class="flex items-start gap-3 text-sm text-steel-light anim-text" style="--d: 0.45s"><svg class="w-5 h-5 text-ash shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>Bevételi cél sparkline grafikonnal</li>
+            <li class="flex items-start gap-3 text-sm text-steel-light anim-text" style="--d: 0.55s"><svg class="w-5 h-5 text-ash shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>Havi és éves pénzügyi kimutatás</li>
+          </ul>
+        </div>
+        <div class="glass rounded-2xl p-1 glow-teal-sm mock-tilt">
+          <div class="bg-ink-lighter rounded-xl p-6 flex items-center justify-center min-h-[280px]">
+            <div class="w-full max-w-xs space-y-4 mock-stagger">
+              <div class="text-xs font-semibold text-steel uppercase tracking-wider">Pénzügyi összesítő</div>
+              <div class="glass rounded-lg px-4 py-3">
+                <div class="flex items-center justify-between mb-2"><span class="text-xs text-steel">Havi bevétel</span><span class="text-sm font-bold text-ash">1 240 000 Ft</span></div>
+                <div class="w-full h-1.5 bg-ink rounded-full overflow-hidden"><div class="h-full bg-gradient-to-r from-teal to-ash rounded-full" style="width: 78%"></div></div>
+                <div class="text-[10px] text-steel mt-1">78% a célból (1 600 000 Ft)</div>
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <div class="glass rounded-lg px-3 py-2 text-center"><div class="text-lg font-bold text-cream">24</div><div class="text-[10px] text-steel">Kiállított számla</div></div>
+                <div class="glass rounded-lg px-3 py-2 text-center"><div class="text-lg font-bold text-cream">3</div><div class="text-[10px] text-steel">Fizetésre vár</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Deep-dive 4: Naptár & AI -->
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center reveal anim-group">
+        <div class="order-2 lg:order-1 glass rounded-2xl p-1 glow-teal-sm mock-tilt mock-tilt-right">
+          <div class="bg-ink-lighter rounded-xl p-6 flex items-center justify-center min-h-[280px]">
+            <div class="w-full max-w-xs space-y-3 mock-stagger">
+              <div class="text-xs font-semibold text-steel uppercase tracking-wider mb-2">Ma · Március 23, hétfő</div>
+              <div class="glass rounded-lg px-4 py-3 flex items-center gap-3 border-l-2 border-ash">
+                <div><div class="text-sm font-medium">10:00 — Ügyfélmegbeszélés</div><div class="text-xs text-steel">Alma & Barát Kft. · Weboldal redesign</div></div>
+              </div>
+              <div class="glass rounded-lg px-4 py-3 flex items-center gap-3 border-l-2 border-teal-light">
+                <div><div class="text-sm font-medium">14:00 — Prezentáció</div><div class="text-xs text-steel">Delta Marketing · Social kampány</div></div>
+              </div>
+              <div class="glass rounded-lg px-4 py-2 flex items-center gap-2 mt-2">
+                <svg class="w-4 h-4 text-ash" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
+                <span class="text-xs text-steel-light">AI jegyzet: „3 akciópont kiemelve a megbeszélésből"</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="order-1 lg:order-2">
+          <span class="text-xs font-semibold uppercase tracking-widest text-teal-light anim-slide-r" style="--d: 0s">Naptár & AI Hangfelvétel</span>
+          <h3 class="mt-3 text-2xl sm:text-3xl font-bold tracking-tight leading-snug anim-slide-r" style="--d: 0.1s">
+            Naptár, emlékeztetők és AI-val jegyzetelt megbeszélések
+          </h3>
+          <p class="mt-4 text-steel-light leading-relaxed anim-text" style="--d: 0.25s">
+            Tekintsd meg a heted vizuálisan: projekt-deadline-ok, ügyfélmeetingek, emlékeztetők. A beépített hangrögzítő automatikusan átírja a megbeszélést szöveggé, majd az AI kiemeli a legfontosabb teendőket — te pedig tényleg a munkára koncentrálhatsz.
+          </p>
+          <ul class="mt-6 space-y-3">
+            <li class="flex items-start gap-3 text-sm text-steel-light anim-text" style="--d: 0.35s"><svg class="w-5 h-5 text-ash shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>Havi, heti és napi naptárnézet</li>
+            <li class="flex items-start gap-3 text-sm text-steel-light anim-text" style="--d: 0.45s"><svg class="w-5 h-5 text-ash shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>Deepgram transzkripció + OpenAI összegzés</li>
+            <li class="flex items-start gap-3 text-sm text-steel-light anim-text" style="--d: 0.55s"><svg class="w-5 h-5 text-ash shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>Pomodoro időzítő projekthez kötve</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════ TARGET AUDIENCE — "Kinek való?" ═══════════════ -->
+  <section id="audience" class="py-24 lg:py-32 relative">
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-teal/[0.03] to-transparent pointer-events-none"></div>
+    <div class="max-w-6xl mx-auto px-6 relative z-10">
+      <div class="max-w-2xl mb-16 reveal anim-group">
+        <span class="text-xs font-semibold uppercase tracking-widest text-teal-light anim-slide-r" style="--d: 0s">Kinek való?</span>
+        <h2 class="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight anim-heading" style="--d: 0.12s">
+          Főbb <span class="text-transparent bg-clip-text bg-gradient-to-r from-steel-light to-ash">előnyök…</span>
+        </h2>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start reveal">
+        <!-- Left: Accordion -->
+        <div class="space-y-0 divide-y divide-teal/10">
+          <details class="group py-5" open data-persona="agency">
+            <summary class="flex items-center justify-between cursor-pointer">
+              <h3 class="text-lg font-bold">Ügynökségvezetők</h3>
+              <svg class="w-5 h-5 text-steel transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="mt-4 space-y-3">
+              <div class="flex items-start gap-3 text-sm text-steel-light"><svg class="w-5 h-5 text-ash shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>Átlátod az összes projektet, ügyfelet és pénzügyet egyetlen dashboardról</div>
+              <div class="flex items-start gap-3 text-sm text-steel-light"><svg class="w-5 h-5 text-ash shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>Azonnal tudod, melyik projekt csúszik és miért</div>
+              <div class="flex items-start gap-3 text-sm text-steel-light"><svg class="w-5 h-5 text-ash shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>Bevételi célok és pénzügyi kimutatások valós időben</div>
+              <p class="text-xs text-steel/70 italic mt-2 pl-8">„Végre nem öt különböző tabban kell vadásznom az infóra."</p>
+            </div>
+          </details>
+
+          <details class="group py-5" data-persona="freelancer">
+            <summary class="flex items-center justify-between cursor-pointer">
+              <h3 class="text-lg font-bold">Szabadúszók</h3>
+              <svg class="w-5 h-5 text-steel transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="mt-4 space-y-3">
+              <div class="flex items-start gap-3 text-sm text-steel-light"><svg class="w-5 h-5 text-ash shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>Gyorsan felveszed az új ügyfeleket és projekteket</div>
+              <div class="flex items-start gap-3 text-sm text-steel-light"><svg class="w-5 h-5 text-ash shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>A Pomodoro timer méri az időt projektenként</div>
+              <div class="flex items-start gap-3 text-sm text-steel-light"><svg class="w-5 h-5 text-ash shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>Számlázás egy kattintással a Billingo-n keresztül</div>
+            </div>
+          </details>
+
+          <details class="group py-5" data-persona="pm">
+            <summary class="flex items-center justify-between cursor-pointer">
+              <h3 class="text-lg font-bold">Projektmenedzserek</h3>
+              <svg class="w-5 h-5 text-steel transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="mt-4 space-y-3">
+              <div class="flex items-start gap-3 text-sm text-steel-light"><svg class="w-5 h-5 text-ash shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>Minden projekt egy helyen, a felkéréstől a lezárásig</div>
+              <div class="flex items-start gap-3 text-sm text-steel-light"><svg class="w-5 h-5 text-ash shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>A naptár vizuálisan mutatja a deadline-okat</div>
+              <div class="flex items-start gap-3 text-sm text-steel-light"><svg class="w-5 h-5 text-ash shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>AI jegyzetelés: a megbeszélések nem vesznek el</div>
+            </div>
+          </details>
+
+          <details class="group py-5" data-persona="smb">
+            <summary class="flex items-center justify-between cursor-pointer">
+              <h3 class="text-lg font-bold">Kisvállalkozás-vezetők</h3>
+              <svg class="w-5 h-5 text-steel transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="mt-4 space-y-3">
+              <div class="flex items-start gap-3 text-sm text-steel-light"><svg class="w-5 h-5 text-ash shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>Nincs szükség IT-re vagy drága SaaS előfizetésekre</div>
+              <div class="flex items-start gap-3 text-sm text-steel-light"><svg class="w-5 h-5 text-ash shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>Magyar nyelvű, egyszerű felület — nem kell betanulni</div>
+              <div class="flex items-start gap-3 text-sm text-steel-light"><svg class="w-5 h-5 text-ash shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>Offline is működik — nem kell állandó internet</div>
+            </div>
+          </details>
+        </div>
+
+        <!-- Right: Persona testimonial card -->
+        <div class="relative min-h-[380px]">
+          <!-- Agency -->
+          <div class="persona-card active glass rounded-2xl p-8" data-persona="agency">
+            <div class="flex items-center gap-5 mb-6">
+              <img src="/personas/agency.svg" alt="Kovács Péter, ügynökségvezető" class="w-20 h-20 rounded-2xl object-cover ring-2 ring-teal/20" loading="lazy" />
+              <div>
+                <div class="font-bold text-lg">Kovács Péter</div>
+                <div class="text-sm text-steel">Ügyvezető · Kreatív ügynökség</div>
+              </div>
+            </div>
+            <blockquote class="text-[15px] text-steel-light leading-relaxed italic">
+              „Végre nem öt különböző tabban kell vadásznom az infóra. A Klient megmutatta, hogy melyik projektünk csúszik és miért — a havi bevételi célunkat is emiatt értük el először."
+            </blockquote>
+            <div class="mt-4 flex gap-1">
+              <svg class="w-4 h-4 text-ash" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg class="w-4 h-4 text-ash" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg class="w-4 h-4 text-ash" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg class="w-4 h-4 text-ash" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg class="w-4 h-4 text-ash" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            </div>
+          </div>
+
+          <!-- Freelancer -->
+          <div class="persona-card glass rounded-2xl p-8" data-persona="freelancer">
+            <div class="flex items-center gap-5 mb-6">
+              <img src="/personas/freelancer.svg" alt="Németh Anna, szabadúszó designer" class="w-20 h-20 rounded-2xl object-cover ring-2 ring-teal/20" loading="lazy" />
+              <div>
+                <div class="font-bold text-lg">Németh Anna</div>
+                <div class="text-sm text-steel">Szabadúszó grafikus & brand designer</div>
+              </div>
+            </div>
+            <blockquote class="text-[15px] text-steel-light leading-relaxed italic">
+              „Egyedül dolgozom, de 20+ ügyfelem van. A Klient-ben mindent megtalálok: ki mennyit fizetett, melyik projekt hol tart, és a Billingo-s számla is egy kattintás. Heti 3-4 óra admint spórolok."
+            </blockquote>
+            <div class="mt-4 flex gap-1">
+              <svg class="w-4 h-4 text-ash" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg class="w-4 h-4 text-ash" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg class="w-4 h-4 text-ash" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg class="w-4 h-4 text-ash" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg class="w-4 h-4 text-ash" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            </div>
+          </div>
+
+          <!-- PM -->
+          <div class="persona-card glass rounded-2xl p-8" data-persona="pm">
+            <div class="flex items-center gap-5 mb-6">
+              <img src="/personas/pm.svg" alt="Tóth Gergő, projektmenedzser" class="w-20 h-20 rounded-2xl object-cover ring-2 ring-teal/20" loading="lazy" />
+              <div>
+                <div class="font-bold text-lg">Tóth Gergő</div>
+                <div class="text-sm text-steel">Projektmenedzser · Digitális ügynökség</div>
+              </div>
+            </div>
+            <blockquote class="text-[15px] text-steel-light leading-relaxed italic">
+              „A megbeszélésekről mindig elfelejtettünk jegyzetelni. Amióta a Klient AI-ja automatikusan összefoglalja a meetinget, semmi sem veszik el. A naptárnézetben pedig egy pillantás alatt látom, mi jön."
+            </blockquote>
+            <div class="mt-4 flex gap-1">
+              <svg class="w-4 h-4 text-ash" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg class="w-4 h-4 text-ash" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg class="w-4 h-4 text-ash" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg class="w-4 h-4 text-ash" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg class="w-4 h-4 text-ash" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            </div>
+          </div>
+
+          <!-- SMB -->
+          <div class="persona-card glass rounded-2xl p-8" data-persona="smb">
+            <div class="flex items-center gap-5 mb-6">
+              <img src="/personas/smb.svg" alt="Szabó Eszter, kisvállalkozás-vezető" class="w-20 h-20 rounded-2xl object-cover ring-2 ring-teal/20" loading="lazy" />
+              <div>
+                <div class="font-bold text-lg">Szabó Eszter</div>
+                <div class="text-sm text-steel">Tulajdonos · Marketing stúdió</div>
+              </div>
+            </div>
+            <blockquote class="text-[15px] text-steel-light leading-relaxed italic">
+              „Nem értek az IT-hez, és nem akartam drága SaaS rendszereket. A Klient magyarul van, egyszerű, és offline is megy. A csapatom félóra alatt megtanulta használni."
+            </blockquote>
+            <div class="mt-4 flex gap-1">
+              <svg class="w-4 h-4 text-ash" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg class="w-4 h-4 text-ash" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg class="w-4 h-4 text-ash" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg class="w-4 h-4 text-ash" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg class="w-4 h-4 text-ash" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ PRICING ═══════════════ -->
+  <section id="pricing" class="py-24 lg:py-32 relative">
+    <div class="max-w-5xl mx-auto px-6 relative z-10">
+      <div class="text-center mb-16 reveal anim-group">
+        <span class="text-xs font-semibold uppercase tracking-widest text-teal-light anim-fade" style="--d: 0s">Árazás</span>
+        <h2 class="mt-4 text-3xl sm:text-4xl font-bold tracking-tight anim-heading" style="--d: 0.1s">Egyszerű, átlátható árak</h2>
+        <p class="mt-4 text-steel max-w-lg mx-auto anim-text" style="--d: 0.25s">Minden csomag tartalmazza az összes funkciót. 14 napos ingyenes próba, bankkártya nélkül.</p>
+      </div>
+
+      <div class="grid sm:grid-cols-3 gap-6 reveal anim-group">
+        <!-- Monthly -->
+        <div class="feature-card glass rounded-2xl p-8 flex flex-col anim-scale" style="--d: 0s">
+          <div class="text-sm font-medium text-steel mb-4">Havi</div>
+          <div class="flex items-baseline gap-1 mb-1">
+            <span class="text-4xl font-bold">3 990 Ft</span>
+            <span class="text-steel text-sm">/ hó</span>
+          </div>
+          <p class="text-sm text-steel mt-2 mb-8">Rugalmas, havi elköteleződéssel.</p>
+          <ul class="space-y-3 text-sm text-steel-light mb-8 flex-1">
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-ash shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Minden funkció</li>
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-ash shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Automatikus frissítések</li>
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-ash shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Email támogatás</li>
+          </ul>
+          <a href="#downloads" class="btn-secondary text-center py-3 rounded-xl text-sm font-semibold text-cream/80">Próba indítása</a>
+        </div>
+
+        <!-- Yearly — Popular -->
+        <div class="pricing-popular rounded-2xl p-8 flex flex-col relative feature-card anim-scale" style="--d: 0.2s">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-ash text-ink text-xs font-bold px-4 py-1 rounded-full">Legnépszerűbb</div>
+          <div class="text-sm font-medium text-ash mb-4">Éves</div>
+          <div class="flex items-baseline gap-1 mb-1">
+            <span class="text-4xl font-bold">39 900 Ft</span>
+            <span class="text-steel text-sm">/ év</span>
+          </div>
+          <p class="text-sm text-ash/80 mt-1 mb-2">3 325 Ft/hó — <span class="text-ash font-semibold">2 hónap ingyen</span></p>
+          <p class="text-sm text-steel mt-2 mb-8">A legjobb érték. Spórolj 17%-ot.</p>
+          <ul class="space-y-3 text-sm text-cream/80 mb-8 flex-1">
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-ash shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Minden funkció</li>
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-ash shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Automatikus frissítések</li>
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-ash shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Prioritásos támogatás</li>
+          </ul>
+          <a href="#downloads" class="btn-primary text-center py-3 rounded-xl text-sm font-semibold text-cream">Próba indítása</a>
+        </div>
+
+        <!-- Lifetime -->
+        <div class="feature-card glass rounded-2xl p-8 flex flex-col anim-scale" style="--d: 0.4s">
+          <div class="text-sm font-medium text-steel mb-4">Lifetime</div>
+          <div class="flex items-baseline gap-1 mb-1">
+            <span class="text-4xl font-bold">119 900 Ft</span>
+            <span class="text-steel text-sm"> egyszer</span>
+          </div>
+          <p class="text-sm text-steel mt-2 mb-8">Fizess egyszer, használd örökké.</p>
+          <ul class="space-y-3 text-sm text-steel-light mb-8 flex-1">
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-ash shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Minden funkció — örökre</li>
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-ash shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Összes jövőbeli frissítés</li>
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-ash shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Prioritásos támogatás</li>
+          </ul>
+          <a href="#downloads" class="btn-secondary text-center py-3 rounded-xl text-sm font-semibold text-cream/80">Próba indítása</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ DOWNLOADS ═══════════════ -->
+  <section id="downloads" class="py-24 lg:py-32 relative">
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-teal/[0.03] to-transparent pointer-events-none"></div>
+    <div class="max-w-4xl mx-auto px-6 relative z-10">
+      <div class="text-center mb-16 reveal anim-group">
+        <span class="text-xs font-semibold uppercase tracking-widest text-teal-light anim-fade" style="--d: 0s">Letöltés</span>
+        <h2 class="mt-4 text-3xl sm:text-4xl font-bold tracking-tight anim-heading" style="--d: 0.1s">Töltsd le a Klient-et</h2>
+        <p class="mt-4 text-steel anim-text" style="--d: 0.25s">Válaszd ki a platformodat. 14 napos ingyenes próba, nincs bankkártya szükséges.</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-6 max-w-2xl mx-auto reveal anim-group">
+        <!-- Windows -->
+        <a id="download-win" href="#" class="platform-badge glass rounded-2xl p-8 text-center block group anim-slide-l" style="--d: 0s">
+          <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-teal/15 flex items-center justify-center group-hover:bg-teal/25 transition">
+            <svg class="w-8 h-8 text-cream" viewBox="0 0 24 24" fill="currentColor"><path d="M3 12.5v-8l7.5-1v8.5H3zm8.5-9.3L22 2v10h-10.5V3.2zM22 12.5V22l-10.5-1.5v-8H22zM10.5 20.4L3 19.5v-7H10.5v7.9z"/></svg>
+          </div>
+          <div class="text-lg font-semibold mb-1">Windows</div>
+          <div class="text-sm text-steel mb-3">Windows 10+</div>
+          <div class="inline-flex items-center gap-2 btn-primary px-5 py-2.5 rounded-xl text-sm font-semibold text-cream">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+            <span id="download-win-label">Letöltés (.exe)</span>
+          </div>
+          <div id="download-win-size" class="text-xs text-steel/60 mt-2"></div>
+        </a>
+
+        <!-- macOS -->
+        <a id="download-mac" href="#" class="platform-badge glass rounded-2xl p-8 text-center block group anim-slide-r" style="--d: 0.15s">
+          <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-teal/15 flex items-center justify-center group-hover:bg-teal/25 transition">
+            <svg class="w-8 h-8 text-cream" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          </div>
+          <div class="text-lg font-semibold mb-1">macOS</div>
+          <div class="text-sm text-steel mb-3">Universal — Intel + Apple Silicon</div>
+          <div class="inline-flex items-center gap-2 btn-primary px-5 py-2.5 rounded-xl text-sm font-semibold text-cream">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+            <span id="download-mac-label">Letöltés (.dmg)</span>
+          </div>
+          <div id="download-mac-size" class="text-xs text-steel/60 mt-2"></div>
+        </a>
+      </div>
+
+      <p class="text-center text-xs text-steel/50 mt-8 reveal">
+        Az alkalmazás automatikusan frissül. A jelenlegi verzió: <span id="current-version" class="text-steel">...</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════════════ RELEASE NOTES ═══════════════ -->
+  <section id="releases" class="py-24 lg:py-32 relative">
+    <div class="max-w-3xl mx-auto px-6 relative z-10">
+      <div class="text-center mb-16 reveal anim-group">
+        <span class="text-xs font-semibold uppercase tracking-widest text-teal-light anim-fade" style="--d: 0s">Változásnapló</span>
+        <h2 class="mt-4 text-3xl sm:text-4xl font-bold tracking-tight anim-heading" style="--d: 0.1s">Frissítések és javítások</h2>
+        <p class="mt-4 text-steel anim-text" style="--d: 0.25s">Folyamatos fejlesztés. Minden verzió újdonságai egy helyen.</p>
+      </div>
+
+      <div id="releases-list" class="space-y-8 reveal">
+        <div class="text-center text-steel py-8">
+          <div class="animate-pulse flex flex-col items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-teal/20"></div>
+            <div class="h-3 w-48 bg-teal/10 rounded"></div>
+            <div class="h-3 w-32 bg-teal/10 rounded"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ CTA ═══════════════ -->
+  <section class="py-24 lg:py-32 relative overflow-hidden">
+    <div class="absolute inset-0 hero-gradient opacity-50 pointer-events-none"></div>
+    <div class="max-w-3xl mx-auto px-6 text-center relative z-10 reveal anim-group">
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight anim-heading" style="--d: 0s">
+        Készen állsz rendbe tenni<br/>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-steel-light to-ash">az ügynökséged?</span>
+      </h2>
+      <p class="mt-6 text-lg text-steel-light max-w-lg mx-auto anim-text" style="--d: 0.2s">Próbáld ki a Klient-et 14 napig ingyen. Nem kell bankkártya, nem kell elköteleződés — ha nem tetszik, törlöd és kész.</p>
+      <div class="mt-10 flex flex-wrap justify-center gap-4">
+        <a href="#downloads" class="btn-primary inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-cream font-semibold text-base anim-scale" style="--d: 0.35s">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          Ingyenes letöltés
+        </a>
+        <a href="docs.html" class="btn-secondary inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-cream/80 font-medium text-base anim-scale" style="--d: 0.45s">
+          Dokumentáció
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ FOOTER ═══════════════ -->
+  <footer class="border-t border-teal/10 py-12 reveal anim-group">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid sm:grid-cols-3 gap-8 mb-8 anim-fade" style="--d: 0s">
+        <div>
+          <div class="flex items-center gap-3 mb-3">
+            <img src="/icon.png" alt="Klient" class="w-8 h-8 rounded-lg" />
+            <span class="font-semibold">Klient</span>
+          </div>
+          <p class="text-sm text-steel leading-relaxed">Magyar fejlesztésű ügyfél- és projektkezelő asztali alkalmazás ügynökségeknek és szabadúszóknak.</p>
+        </div>
+        <div>
+          <h4 class="font-semibold text-sm mb-3">Navigáció</h4>
+          <ul class="space-y-2 text-sm text-steel">
+            <li><a href="#features" class="hover:text-cream transition">Funkciók</a></li>
+            <li><a href="#pricing" class="hover:text-cream transition">Árazás</a></li>
+            <li><a href="#downloads" class="hover:text-cream transition">Letöltés</a></li>
+            <li><a href="docs.html" class="hover:text-cream transition">Dokumentáció</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold text-sm mb-3">Linkek</h4>
+          <ul class="space-y-2 text-sm text-steel">
+            <li>
+              <a href="https://github.com/christopherkondora/klient-app" target="_blank" rel="noopener noreferrer" class="hover:text-cream transition flex items-center gap-1.5">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                GitHub
+              </a>
+            </li>
+            <li><a href="https://github.com/christopherkondora/klient-app/releases" target="_blank" rel="noopener noreferrer" class="hover:text-cream transition">Összes kiadás</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-teal/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 anim-fade" style="--d: 0.15s">
+        <p class="text-xs text-steel">&copy; 2025 Klient. Minden jog fenntartva.</p>
+        <p class="text-xs text-steel">Készült Magyarországon 🇭🇺</p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
