@@ -40,6 +40,15 @@ html {
   border: 1px solid rgba(174, 195, 176, 0.18);
 }
 
+/* Navbar scrolled — opaque enough to hide content behind, still glassy */
+.nav-scrolled {
+  background: rgba(1, 22, 30, 0.82);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  border-bottom: 1px solid rgba(174, 195, 176, 0.08);
+  box-shadow: 0 1px 20px rgba(0, 0, 0, 0.3);
+}
+
 /* Animated gradient bg */
 .hero-gradient {
   background: 
