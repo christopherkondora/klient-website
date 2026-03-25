@@ -14,6 +14,7 @@ export default {
         main: resolve(__dirname, 'index.html'),
         docs: resolve(__dirname, 'docs.html'),
         'reset-password': resolve(__dirname, 'reset-password.html'),
+        confirmed: resolve(__dirname, 'confirmed.html'),
       },
     },
   },
