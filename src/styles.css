@@ -206,6 +206,13 @@ html {
   background: linear-gradient(180deg, #124559, transparent);
 }
 
+.release-fade-last {
+  opacity: 0.6;
+  filter: blur(0.4px);
+  -webkit-mask-image: linear-gradient(to bottom, #000 45%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 45%, transparent 100%);
+}
+
 /* Platform badge */
 .platform-badge {
   transition: all 0.3s ease;

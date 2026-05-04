@@ -186,11 +186,12 @@ function setupDownloads(release) {
 // ─── Render release notes timeline ───
 function renderReleases(releases) {
   const container = document.getElementById('releases-list');
+  const visibleReleases = releases.slice(0, 3);
 
-  const html = releases
-    .slice(0, 10)
+  const html = visibleReleases
     .map((release, i) => {
       const isLatest = i === 0;
+      const isLastVisible = i === visibleReleases.length - 1 && visibleReleases.length === 3;
       const body = release.body
         ? release.body
             .replace(/^### /gm, '<h4 class="text-sm font-semibold text-cream mt-4 mb-2">')
@@ -203,7 +204,7 @@ function renderReleases(releases) {
         : '<p class="text-sm text-steel">Nincs leírás ehhez a verzióhoz.</p>';
 
       return `
-        <div class="relative pl-8 pb-8 ${i < releases.length - 1 ? 'border-l border-teal/20' : ''} ml-3">
+        <div class="relative pl-8 pb-8 ${i < visibleReleases.length - 1 ? 'border-l border-teal/20' : ''} ml-3 ${isLastVisible ? 'release-fade-last' : ''}">
           <div class="absolute -left-[7px] top-1 w-3.5 h-3.5 rounded-full ${isLatest ? 'bg-ash glow-teal-sm' : 'bg-teal/40'} border-2 border-ink"></div>
           <div class="glass rounded-2xl p-6">
             <div class="flex items-center gap-3 mb-3 flex-wrap">
