@@ -15,6 +15,8 @@ export default {
         docs: resolve(__dirname, 'docs.html'),
         'reset-password': resolve(__dirname, 'reset-password.html'),
         confirmed: resolve(__dirname, 'confirmed.html'),
+        billing: resolve(__dirname, 'billing.html'),
+        subscription: resolve(__dirname, 'subscription.html'),
       },
     },
   },

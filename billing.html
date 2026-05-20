@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fizetési adatok — Klient</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" href="/icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Red+Hat+Display:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Red Hat Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      background: #01161E;
+      color: #EFF6E0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .card {
+      background: rgba(18, 69, 89, 0.12);
+      border: 1px solid rgba(18, 69, 89, 0.2);
+      border-radius: 16px;
+      padding: 2.5rem;
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+    .logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #EFF6E0;
+      letter-spacing: 0.05em;
+      margin-bottom: 2rem;
+    }
+    .icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: rgba(18, 69, 89, 0.2);
+      border: 1px solid rgba(18, 69, 89, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+    }
+    .icon svg { color: #AEC3B0; }
+    .icon.error-icon {
+      background: rgba(239, 68, 68, 0.1);
+      border-color: rgba(239, 68, 68, 0.25);
+    }
+    .icon.error-icon svg { color: #f87171; }
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    p {
+      color: #598392;
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+    .hint {
+      color: rgba(89, 131, 146, 0.5);
+      font-size: 0.75rem;
+      margin-top: 1.5rem;
+    }
+    .spinner {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      border: 2px solid rgba(89, 131, 146, 0.3);
+      border-top-color: #598392;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      margin: 0 auto 1.5rem;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo">KLIENT</div>
+
+    <!-- Loading state -->
+    <div id="loading-view">
+      <div class="spinner"></div>
+      <h1>Átirányítás...</h1>
+      <p>Megnyitjuk a fizetési portált. Ez csak pillanat.</p>
+    </div>
+
+    <!-- Error state -->
+    <div id="error-view" class="hidden">
+      <div class="icon error-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+      </div>
+      <h1 id="error-title">Lejárt link</h1>
+      <p id="error-msg">Ez a link lejárt vagy érvénytelen. Nyisd meg a Klient appot a fizetési adatok frissítéséhez.</p>
+      <p class="hint">Beállítások → Előfizetés → Fizetési adatok módosítása</p>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const SUPABASE_URL = 'https://arbhhltbjovuxwvfcnni.supabase.co';
+      const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFyYmhobHRiam92dXh3dmZjbm5pIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDkzOTg0MTUsImV4cCI6MjA2NDk3NDQxNX0.ra0MWB6_5H-MDi5OH1WFsaYnZ2DDkSAGadqyp6RjELs';
+
+      const loadingView = document.getElementById('loading-view');
+      const errorView = document.getElementById('error-view');
+      const errorTitle = document.getElementById('error-title');
+      const errorMsg = document.getElementById('error-msg');
+
+      function showError(title, msg) {
+        loadingView.classList.add('hidden');
+        errorView.classList.remove('hidden');
+        errorTitle.textContent = title;
+        errorMsg.textContent = msg;
+      }
+
+      const params = new URLSearchParams(window.location.search);
+      const token = params.get('token');
+
+      if (!token) {
+        showError('Hiányzó token', 'Érvénytelen link. Nyisd meg a Klient appot a fizetési adatok kezeléséhez.');
+        return;
+      }
+
+      fetch(`${SUPABASE_URL}/functions/v1/create-billing-portal?token=${encodeURIComponent(token)}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+        },
+      })
+        .then(function (res) {
+          return res.json().then(function (data) {
+            return { ok: res.ok, data: data };
+          });
+        })
+        .then(function (result) {
+          if (result.ok && result.data.url) {
+            window.location.href = result.data.url;
+          } else {
+            const msg = (result.data && result.data.error) || 'Nem sikerült megnyitni a fizetési portált.';
+            const isExpired = msg.includes('lejárt') || msg.includes('érvénytelen');
+            showError(
+              isExpired ? 'Lejárt link' : 'Hiba történt',
+              isExpired
+                ? 'Ez a link lejárt. Nyisd meg a Klient appot, és a Beállítások → Előfizetés menüben is eléred a portált.'
+                : msg
+            );
+          }
+        })
+        .catch(function () {
+          showError('Kapcsolati hiba', 'Nem sikerült csatlakozni a szerverhez. Ellenőrizd az internetkapcsolatod, majd próbáld újra a Klient appból.');
+        });
+    })();
+  </script>
+</body>
+</html>
